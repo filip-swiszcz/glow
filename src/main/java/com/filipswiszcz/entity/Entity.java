@@ -5,11 +5,12 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.filipswiszcz.instance.Instance;
+import com.filipswiszcz.world.World;
 
 /**
- * Implement Viewable, Tickable, Schedulable, Snapshotable, EventHandler<EntityEvent>, Taggable, 
- * PermissionHandler, HoverEventSource<ShowEntity>, Sound.Emitter
+ * A class that can be an object, a player, an animal or a monster.
+ * <p>
+ * In case of creating your own living entity, extend {@link Human} or {@link Creature}.
  */
 public class Entity {
 
@@ -21,7 +22,7 @@ public class Entity {
 
     //private final CachedPacket destroyPacketCache = new CachedPacket(() -> new DestroyEntitiesPacket(getEntityId()));
 
-    protected Instance instance;
+    protected World world;
 
     private final int id;
 
