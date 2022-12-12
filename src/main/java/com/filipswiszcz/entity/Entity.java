@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.filipswiszcz.world.Chunk;
 import com.filipswiszcz.world.World;
 
 /**
@@ -23,6 +24,7 @@ public class Entity {
     //private final CachedPacket destroyPacketCache = new CachedPacket(() -> new DestroyEntitiesPacket(getEntityId()));
 
     protected World world;
+    protected Chunk chunk;
 
     private final int id;
 
