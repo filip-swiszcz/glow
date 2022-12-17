@@ -25,5 +25,32 @@ public sealed interface Point permits Position, Vector {
      * @return the z coordinate
      */
     double getZ();
+
+    /**
+     * Gets the floored x coordinate.
+     * 
+     * @return the block x coordinate
+     */
+    default int getBlockX() {
+        return (int) Math.floor(this.getX());
+    }
+
+    /**
+     * Gets the floored y coordinate.
+     * 
+     * @return the block y coordinate
+     */
+    default int getBlockY() {
+        return (int) Math.floor(this.getY());
+    }
+
+    /**
+     * Gets the floored z coordinate.
+     * 
+     * @return the block z coordinate
+     */
+    default int getBlockZ() {
+        return (int) Math.floor(this.getZ());
+    }
     
 }
