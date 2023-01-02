@@ -7,6 +7,10 @@ public record Position(double x, double y, double z, float yaw, float pitch) imp
 
     public static final Position zero = new Position(0, 0, 0);
 
+    public Position {
+        fixYaw(yaw);
+    }
+
     public Position(double x, double y, double z) {
         this(x, y, z, 0, 0);
     }
@@ -72,6 +76,33 @@ public record Position(double x, double y, double z, float yaw, float pitch) imp
      */
     public Position withView(Position position) {
         return withView(position.yaw(), position.pitch());
+    }
+
+    /**
+     * Sets the yaw and pitch to point
+     * in the direction of the point.
+     */
+    public Position withDirection(Point point) {
+        final double x = point.getX();
+        final double z = point.getZ();
+        if (x == 0 & y == 0) {
+            //return withPitch()
+        }
+        final double theta = Math.atan2(-x, z);
+        final double xz = Math.sqrt((x * x) + (z * z));
+        final double _2pi = 2 * Math.PI;
+        return withView((float) Math.toDegrees((theta + _2pi) % _2pi), 
+            (float) Math.toDegrees(Math.atan(-point.getY() / xz)));
+    }
+
+    private static float fixYaw(float yaw) {
+        yaw = yaw % 360;
+        if (yaw < -180.0F) {
+            yaw += 360.0F;
+        } else if (yaw > 180.0F) {
+            yaw -= 360.0F;
+        }
+        return yaw;
     }
     
 }
